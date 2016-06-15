@@ -9,7 +9,7 @@ type CSOut{T<:AbstractFloat}
 end
 
 type RunOut{T<:AbstractFloat}
-    res::CsensLP.CSOut{T}
+    res::CSOut{T}
     y::Vector{T}
     A::Matrix{T}
     x::Vector{T}
