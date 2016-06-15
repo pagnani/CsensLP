@@ -8,11 +8,10 @@ using Gurobi,JuMP,Convex
 
 export CSOut, RunOut, ResOut, cslconvex, cslgurobi, csljump, compute_roc, runanal, analdata
 
+
 include("types.jl")
 include("cs.jl")
 include("runanal.jl")
-
-
-
+include("l1curve.jl")
 
 end #module end
