@@ -1,13 +1,26 @@
-function cslconvex(y::Vector{Float64},A::Matrix{Float64}; verbose::Int=1)
+function cslconvex(y::Vector{Float64},A::Matrix{Float64};
+                   verbose::Int=1, 
+                   solver::Symbol=:gurobi #the other option are :glpk
+                   )
+
+    if solver == :gurobi
+        strsolv = GurobiSolver(OutputFlag=verbose)
+    elseif solver == :glpk
+        strsolv = GLPKSolverMIP()
+    else
+        error("solver $solver seems to not being installed\n")
+    end
+
     M,N = size(A)
     mytime = @elapsed begin
         xx = Convex.Variable(N)
         problem = minimize(norm(xx,1), A*xx == y)
-        solve!(problem,GurobiSolver(OutputFlag=verbose))
+        solve!(problem,strsolv)
     end
     println("problem solved in $mytime [s]")
     CSOut(M,N,problem.optval, vec(xx.value), zeros(N), 0.0, problem.status) 
 end
+
 
 
 

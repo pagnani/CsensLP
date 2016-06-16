@@ -1,9 +1,10 @@
 module CsensLP
 
-
+using Convex
 using Gurobi
 using JuMP
-using Convex
+using GLPKMathProgInterface
+
 
 # given y,A  find x s.t 1)  y = A * x , 2)  |x|_1 is minimal 
 # gurobi and jump version should solve (it is not clear)

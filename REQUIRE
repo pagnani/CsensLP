@@ -3,3 +3,4 @@ JuMP
 Convex
 PyCall
 Gurobi
+GLPKMathProgInterface
